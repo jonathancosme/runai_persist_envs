@@ -15,9 +15,9 @@ The run:ai CLI command used can be found here: [runai_cli_commands](./cli.txt).
 
 ### A (specific) frequently asked question  
 
-[](./images/image_1.png)  
+![](./images/image_1.png)  
 
-[](./images/image_2.png)  
+![](./images/image_2.png)  
   
 ## Solution  
 
@@ -28,31 +28,31 @@ The run:ai CLI command used can be found here: [runai_cli_commands](./cli.txt).
 1. When conda is installed, it creates a directory to keep its files.  
 2. Whenever a conda environment is created, it is saved inside a directory called “envs,” within the conda directory.  
   
-[](./images/image_3.png)  
+![](./images/image_3.png)  
   
 #### The idea  
   
 1. Create a folder called “envs” in your NFS  
 2. Mount the NFS “envs” folder, to the location of the conda environments folder in your image.  
   
-[](./images/image_4.png)  
+![](./images/image_4.png)  
   
 ### A note on Jupyter  
   
 Many users like to have ‘tiles’ for their environment on Jupyter  
   
-[](./images/image_5.png)  
+![](./images/image_5.png)  
   
 These setting are saved in a folder called ‘kernels’  
   
-[](./images/image_6.png)  
+![](./images/image_6.png)  
   
 We can persist these ‘tiles’ by:  
   
 1. Creating a folder called “kernels” in your NFS  
 2. Mounting the NFS “kernels” folder, to the location of the kernels folder in your image.  
   
-[](./images/image_7.png)  
+![](./images/image_7.png)  
   
 Adding a tile is done with the following sequence of commands, then refreshing the web browser  
   
@@ -103,29 +103,29 @@ You can see how our image differs from the official image on the github.
   
 1.1 Start a Jupyter Lab interactive session, mounting your NFS folder to /home/jovyan/work  
   
-[](./images/image_8.png)  
+![](./images/image_8.png)  
   
 1.2 Navigate to the ‘work’ directory. You should see your files/folders inside.  
   
-[](./images/image_9.png)  
+![](./images/image_9.png)  
   
 1.3 Select the new folder icon, twice (to create two new folders)  
   
-[](./images/image_10.png)  
+![](./images/image_10.png)  
   
 1.4 Rename the folders ‘envs’ and ‘kernels’  
   
-[](./images/image_11.png)  
+![](./images/image_11.png)  
   
 1.5 Delete the job  
   
-[](./images/image_12.png)  
+![](./images/image_12.png)  
   
 ### Step 2: Mount NFS ‘envs’ and ‘kernels’ folders on an interactive Jupyter Lab job  
   
 2.1 Start a Jupyter Lab interactive session using the image **jonathancosme/base-notebook-root** (do NOT submit job yet)  
   
-[](./images/image_13.png)  
+![](./images/image_13.png)  
   
 2.2 mounts NFS to  
 /home/jovyan/work  
@@ -136,7 +136,7 @@ You can see how our image differs from the official image on the github.
 2.4 mounts NFS ‘envs’ folder to  
 /opt/conda/envs  
   
-[](./images/image_14.png)  
+![](./images/image_14.png)  
   
 2.5 Submit job  
   
@@ -144,7 +144,7 @@ You can see how our image differs from the official image on the github.
   
 3.1 start a terminal, after connecting to the Jupyter lab interactive job  
   
-[](./images/image_15.png)  
+![](./images/image_15.png)  
   
 3.2 create an environment using the following format  
 (ipykernel must always be installed in an environment to create a tile)  
@@ -153,12 +153,12 @@ You can see how our image differs from the official image on the github.
 mamba create -n {your-env-name} -c conda-forge ipykernel {your-env-libraries} -y
 ~~~  
   
-[](./images/image_16.png)  
+![](./images/image_16.png)  
   
 3.3 wait for environment to finish creating.  
 **Warning**: depending on your NFS speed, the ‘Executing transaction’ step can take a long time (\~3 minutes for me)  
   
-[](./images/image_17.png)  
+![](./images/image_17.png)  
   
 3.4 activate the newly created environment using the following format  
   
@@ -166,7 +166,7 @@ mamba create -n {your-env-name} -c conda-forge ipykernel {your-env-libraries} -y
 conda activate {your-env-name}
 ~~~  
   
-[](./images/image_18.png)  
+![](./images/image_18.png)  
   
 3.5 Create the tile by using the following format  
   
@@ -174,7 +174,7 @@ conda activate {your-env-name}
 python -m ipykernel install --user --name={your-env-name}
 ~~~  
   
-[](./images/image_19.png)  
+![](./images/image_19.png)  
   
 3.6 exit the terminal with the following command  
   
@@ -182,29 +182,29 @@ python -m ipykernel install --user --name={your-env-name}
 exit
 ~~~  
   
-[](./images/image_20.png)  
+![](./images/image_20.png)  
   
 3.7 Refresh the Jupyter Lab tab on your browser  
   
-[](./images/image_21.png)  
+![](./images/image_21.png)  
   
 3.8 A tile for your new environment should now be visible  
   
-[](./images/image_22.png)  
+![](./images/image_22.png)  
   
 3.9 You can also select the new env is notebooks  
   
-[](./images/image_23.png)  
+![](./images/image_23.png)  
   
 ### Step 4: Test the environment  
   
 Let’s assume I have this python script....  
   
-[](./images/image_24.png)  
+![](./images/image_24.png)  
   
 ...located here (after mounting my NFS to the Jupyter Lab work directory)  
   
-[](./images/image_25.png)  
+![](./images/image_25.png)  
   
 This is the runai CLI command I want to run  
   
@@ -220,7 +220,7 @@ runai submit \
 	-- conda run -n pandas-env python work/projects/persist_env_demo/persist_env_demo.py
 ~~~  
   
-[](./images/image_26.png)  
+![](./images/image_26.png)  
   
 1. Use the image jonathancosme/base-notebook-root
 2. Mount NFS to Jupyter work directory
@@ -232,15 +232,15 @@ runai submit \
 
 4.1 Run the runai CLI command. You should see a new job in the job list  
   
-[](./images/image_27.png)  
+![](./images/image_27.png)  
   
 4.2 Wait for the job status to switch to ‘Succeeded’  
   
-[](./images/image_28.png)  
+![](./images/image_28.png)  
   
 4.3 View the output of the jobs in the Logs tab  
   
-[](./images/image_29.png)  
+![](./images/image_29.png)  
 
 
 
